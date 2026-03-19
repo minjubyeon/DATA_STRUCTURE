@@ -1,0 +1,137 @@
+#include <iostream>
+
+#include "UnsortedType.h"
+#include "SortedType.h"
+
+UnsortedType::UnsortedType() { length = 0; }
+
+int UnsortedType::size() { return length; }
+
+bool UnsortedType::isFull() { return (length == MAX_SIZE); }
+
+bool UnsortedType::isEmpty() {
+  if (length == 0)
+    return true;
+  else
+    return false;
+}
+
+void UnsortedType::clear() { length == 0; }
+
+ItemType UnsortedType::getItem(int pos) {
+  if (pos >= length) {
+    throw std::out_of_range("Error");
+  }
+  return data[pos];
+}
+
+// 질문
+void UnsortedType::appendItem(ItemType value) {
+  if (isFull()) {
+    return;
+  }
+
+  length++;  // length를 먼저 증가시킵니다.
+  data[length - 1] = value;
+}
+
+// 강의자료에 소개 된 방식
+void UnsortedType::appendItem(ItemType value) {
+  if (isFull()) {
+    return;
+  }
+
+  data[length] = value;
+  length++;  // length를 나중에 증가시킵니다.
+}
+
+void UnsortedType::updateItem(int pos, ItemType new_value) {
+  if (pos >= length) {
+    return;
+  }
+  data[pos] == new_value;
+}
+
+bool UnsortedType::findItem(ItemType value) {
+  for (int i = 0; i < length; i++) {
+    if (data[i] == value) {
+      return true;
+    } else if (i >= length) {
+      return false;
+    }
+  }
+}
+
+bool UnsortedType::findItem(ItemType value) {
+  // 1. 리스트 전체를 처음부터 끝까지 훑음
+  for (int i = 0; i < length; i++) {
+    // 2. 아이템을 찾으면 즉시 true를 반환하고 함수를 종료
+    if (data[i] == value) {
+      return true;
+    }
+  }
+
+  // 3. 루프가 끝날 때까지 return되지 않았다면 리스트에 없는 것
+  // else if (i >= length) 같은 조건문은 필요 없음
+  return false;
+}
+
+bool UnsortedType::findItem(ItemType item) {
+  int location = 0;
+
+  while (location < length) {
+    if (data[location] == item) {
+      return true;
+    }
+    location++;
+  }
+  return false;
+}
+
+void UnsortedType::insertItem(int pos, ItemType value) {
+  if (pos >= length) {
+    return;
+  }
+
+  for (int i = 1; (length - i) < (length - pos); i++) {
+    data[length - i] = data[length - (i + 1)];
+    if ((length - i) == pos) break;
+  }
+
+  data[pos] = value;
+}
+
+void UnsortedType::insertItem(int pos, ItemType value) {
+  // 1. 예외 처리: 위치가 범위를 벗어나거나 배열이 꽉 찬 경우
+  if (pos < 0 || pos > length) {
+    return;
+  }
+
+  // 2. 데이터 시프팅: 맨 뒤에서부터 pos까지 한 칸씩 뒤로 복사
+  // 데이터 유실을 방지하기 위해 반드시 뒤에서부터 이동해야 합니다.
+  for (int i = length; i > pos; i--) {
+    data[i] = data[i - 1];
+  }
+
+  // 3. 목적지(pos)에 값 삽입 및 길이 증가
+  data[pos] = value;
+  length++;
+}
+
+void UnsortedType::insertItem(int pos, ItemType value) {
+  if (isFull()) {
+    return;
+  }
+
+  for (int i = length; i > pos; i--) {
+    data[i] = data[i - 1];
+  }
+
+  data[pos] = value;
+  length++;
+}
+
+void SortedType::insertItem(ItemType value){
+  
+
+}
