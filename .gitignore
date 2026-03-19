@@ -1,0 +1,10 @@
+# Visual Studio Code 설정 폴더
+.vscode/
+
+# C/C++ 컴파일된 실행 파일 및 오브젝트 파일
+*.o
+*.out
+*.exe
+
+# 우분투/리눅스 임시 파일
+*~
