@@ -101,7 +101,7 @@ int SquareMatrix::borderSum()
     }
 }
 
-/*void SquareMatrix::makeEmpty()
+void SquareMatrix::makeEmpty()
 {
     // Implement the function here (Lab01-2)
     // It sets all elements in the matrix to 0
@@ -123,4 +123,5 @@ void SquareMatrix::printMatrix()
         }
         std::cout << std::endl;
     }
-}*/
+
+}
