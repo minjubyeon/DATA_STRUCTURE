@@ -12,7 +12,7 @@ int add(int a, int b) {
     // Implement the function here (Lab01-1)
     // It returns the sum of two input parameters, a and b
     
-    
+    ret = a + b;
     
     
 	return ret;

@@ -57,18 +57,14 @@ void SquareMatrix::copy(SquareMatrix m)
 
 int SquareMatrix::multiplyDiagonal()
 {
-    int ret;
+    int ret = 1;
     // Implement the function here (Lab01-2)
     // It returns the multipled value of diagonal elements
     // Diagonal elements (when the matrix size is N x N): matrix[0][0], matrix[1][1], matrix[2][2], ... matrix[N][N]
     
-    
-    
-    
-    
-    
-    
-    
+    for (int i = 0; i < MATRIX_SIZE; i++){
+        ret *= matrix[i][i];
+    }
     
     return ret;
 }
