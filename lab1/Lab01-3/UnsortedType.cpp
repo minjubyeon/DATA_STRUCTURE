@@ -12,7 +12,7 @@ using namespace std;
 
 UnsortedType::UnsortedType()
 {
-    length = 0;
+    length = 0; 
 }
 
 

@@ -15,7 +15,7 @@
 class SquareMatrix
 {
     
-public:
+public: 
     void makeEmpty();
     void printMatrix();
     void storeValue(int, int, int);

@@ -1,5 +1,4 @@
-//
-//  SquareMatrix.cpp
+// SquareMatrix.cpp
 //  Lab01
 //
 //  Modified by Jeman Park on 2026/03/23.
@@ -71,18 +70,38 @@ int SquareMatrix::multiplyDiagonal()
 
 int SquareMatrix::borderSum()
 {
-    int ret;
+    int ret = 0;
     // Implement the function here (Lab01-2)
     // It returns the sum of border values
     // Refer to the figure in the slide
-    
-    
-    
-    
-    return ret;
+
+    int i = 0;
+    int j = 1;
+
+    for (i; i < MATRIX_SIZE; i++) {
+        ret += matrix[0][i];
+    }
+
+    while (i == MATRIX_SIZE) {
+        for (j; j < MATRIX_SIZE; j++) {
+            ret += matrix[i][j];
+        }
+    }
+
+    for (i; i < 0; i--) {
+        ret += matrix[i][j];
+    }
+
+    while ((i == 0)) {
+        for (j; j < 0; j--) {
+            ret += matrix[i][j];
+        }
+
+        return ret;
+    }
 }
 
-void SquareMatrix::makeEmpty()
+/*void SquareMatrix::makeEmpty()
 {
     // Implement the function here (Lab01-2)
     // It sets all elements in the matrix to 0
@@ -104,4 +123,4 @@ void SquareMatrix::printMatrix()
         }
         std::cout << std::endl;
     }
-}
+}*/
