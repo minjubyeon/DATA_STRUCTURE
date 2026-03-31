@@ -41,7 +41,7 @@ int main() {
     // [borderSum]: 198
     
     
-    //A.makeEmpty();
+    A.makeEmpty();
     A.printMatrix();
     //    ---- n ----
     //  | 0 0 .... 0  0

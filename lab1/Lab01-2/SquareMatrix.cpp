@@ -82,6 +82,13 @@ int SquareMatrix::borderSum() {
 void SquareMatrix::makeEmpty() {
   // Implement the function here (Lab01-2)
   // It sets all elements in the matrix to 0
+
+    for (int i = 0; i < MATRIX_SIZE; i++){
+        for (int j = 0; j < MATRIX_SIZE; j++){
+           matrix[i][j] = 0;
+        }
+    }
+        
 }
 
 void SquareMatrix::printMatrix() {
