@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "UnsortedType.h"
 #include "SortedType.h"
 
