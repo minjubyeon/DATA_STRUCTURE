@@ -57,7 +57,7 @@ int main() {
     // [4 3 14 12 11 7 24 6 1 ]
     
     
-    uList.swapItems(0, 8);
+    //uList.swapItems(0, 8);
     uList.PrintList();
     // [1 3 14 12 11 7 24 6 4 ]
     
