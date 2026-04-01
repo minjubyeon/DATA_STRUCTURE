@@ -1,3 +1,5 @@
+#define MAX_SIZE 30
+
 typedef int ItemType;
 class SortedType {
  private:
