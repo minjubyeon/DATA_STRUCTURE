@@ -63,12 +63,16 @@ void UnsortedType::swapItems(int firstItemIndex, int secondItemIndex) {
   /* Implement the function here (Lab 01-3) */
   // This function swaps data[firstIndex] and data[secondItemIndex]
   // Pay attention to exception handling
-  // Time Complexity: O(   )
-
-
-
-
+  // Time Complexity: O( 1 )
+  if (isEmpty()) {
+    cout << "[ERROR] List is EMPTY" << endl;
+    return;  // ✅ void 함수이므로 그냥 return 가능
+  }
   
+  int temp = 0;
+  temp = data[firstItemIndex];
+  data[firstItemIndex] = data[secondItemIndex];
+  data[secondItemIndex] = temp;
 }
 
 int UnsortedType::removeLargestItem() {
@@ -76,7 +80,7 @@ int UnsortedType::removeLargestItem() {
   /* Implement the function here (Lab 01-3) */
   // This function removes and returns the largest item in the list
   // Pay attention to exception handling
-  // Time Complexity: O(   )
+  // Time Complexity: O( n )
 
   int max_index = 0;
 
