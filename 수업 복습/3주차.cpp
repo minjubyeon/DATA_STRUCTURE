@@ -162,7 +162,21 @@ ItemType UnsortedType::getItem(int pos){
 
 //***********************************************************************************
 //SortedType
-//1. insertItem(ItemType value);
+//1. void insertItem(ItemType value);
+void SortedType::insertItem(ItemType value){
+if (isFull()) return;
+
+for(int i = 0; i > length; ){
+  if (data[i] < value) i++;
+  else {
+    for(int j = length; j > 0; j--) {
+      data[length] = data[length -1];
+    }
+    }
+  }
+}
+
+}
 
 //***********************************************************************************
 //2. void removeItem(ItemType value);
