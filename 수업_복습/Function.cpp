@@ -21,34 +21,36 @@ bool SortedType::isEmpty() {
 // insertItem 연습
 void SortedType::insertItem(ItemType value) {
   if (isFull()) return;
+  if (isEmpty()) {
+    data[0] = value;
+    return;
+  }
 
   int i = 0;
-
   while (i < length) {
     if (data[i] < value)
       i++;
 
-    else {
+    else if (data[i] >= value) {
       for (int j = length; j > i; j--) {
-        data[length] = data[length - 1];
+        data[j] = data[j - 1];
       }
       data[i] = value;
-      length++;
     }
   }
+  
+  length++;
 }
 
-//removeItem 연습
-//void removeItem(ItemType value);
+// removeItem 연습
+// void removeItem(ItemType value);
 
-//updateItem 연습
-// void updateItem(ItemType old_value, ItemType new_value);
+// updateItem 연습
+//  void updateItem(ItemType old_value, ItemType new_value);
 
 void SortedType::clear() { length = 0; }
 
 int SortedType::size() { return length; }
-
-
 
 // bool findItem(ItemType item);
 
