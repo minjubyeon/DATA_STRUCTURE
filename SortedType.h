@@ -10,4 +10,9 @@ class SortedType {
   SortedType();
   void insertItem(ItemType value);
   void removeItem(ItemType value);
+  void updateItem(ItemType old_value, ItemType new_value);
+  void clear();
+
+  bool findItem(ItemType item);
+  ItemType getItem(int pos);
 };
