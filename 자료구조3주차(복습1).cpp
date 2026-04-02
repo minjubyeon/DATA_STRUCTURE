@@ -17,6 +17,12 @@ void UnsortedType::appendItem(ItemType value) {
 //***********************************************************************************
 //2. void insertItem(int pos, ItemType value);
 
+void insertItem(int pos, ItemType value){
+if (pos > MAX_SIZE){
+    return;
+}
+
+}
 
 
 //***********************************************************************************
