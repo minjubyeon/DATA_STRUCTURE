@@ -13,10 +13,10 @@ class SortedType {
   //void updateItem(ItemType old_value, ItemType new_value);
   void clear();
 
-  //int size();
-  //bool isFull();
-  //bool isEmpty();
+  int size();
+  bool isFull();
+  bool isEmpty();
   //bool findItem(ItemType item);
-  //ItemType getItem(int pos);
+  ItemType getItem(int pos);
 };
 
