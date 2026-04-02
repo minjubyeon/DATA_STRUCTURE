@@ -23,13 +23,16 @@ void SortedType::insertItem(ItemType value) {
   if (isFull()) return;
 
   int i = 0;
+
   while (i < length) {
     if (data[i] < value)
       i++;
+
     else {
-      for (int j = length; j < i; j--) {
+      for (int j = length; j > i; j--) {
         data[length] = data[length - 1];
       }
+      data[i] = value;
       length++;
     }
   }
