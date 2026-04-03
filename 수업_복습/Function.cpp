@@ -21,29 +21,47 @@ bool SortedType::isEmpty() {
 // insertItem 연습
 void SortedType::insertItem(ItemType value) {
   if (isFull()) return;
-  if (isEmpty()) {
-    data[0] = value;
-    return;
-  }
 
-  int i = 0;
-  while (i < length) {
-    if (data[i] < value)
-      i++;
-
-    else if (data[i] >= value) {
-      for (int j = length; j > i; j--) {
-        data[j] = data[j - 1];
-      }
-      data[i] = value;
-    }
+  int location = 0;
+  while (location < length) {
+    if (value > data[location])
+      location++;
+    else
+      break;  // 삽입 위치 찾으면 즉시 탈출
   }
-  
+  // while과 분리된 for루프로 한번에 밀기
+  for (int i = length; i > location; i--) data[i] = data[i - 1];
+
+  data[location] = value;
   length++;
 }
 
 // removeItem 연습
-// void removeItem(ItemType value);
+void SortedType::removeItem(ItemType value) {
+  if (isEmpty()) return;
+
+  int location = 0;
+  while (location < length) {
+    if (value > data[location])
+      location++;
+
+    else if (value == data[location])
+      break;
+
+    else if (value < data[location])
+      return;
+  }
+
+  if (location < length) {
+    for (int i = location; (i + 1) < length; i++) {
+      data[i] = data[i + 1];
+    }
+    length--;
+  } 
+  
+  else if (location == length)
+    return;
+}
 
 // updateItem 연습
 //  void updateItem(ItemType old_value, ItemType new_value);

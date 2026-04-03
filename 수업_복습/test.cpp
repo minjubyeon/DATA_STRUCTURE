@@ -1,8 +1,7 @@
 //
 //  test.cpp
 //
-//  Test file for SortedType::insertItem
-//  Verifies that insertItem maintains sorted (ascending) order at all times.
+//  Test file for SortedType::insertItem, removeItem, updateItem
 //
 
 #include <iostream>
@@ -10,7 +9,6 @@
 
 using namespace std;
 
-// Helper: SortedType에 PrintList가 없으므로 직접 출력
 void PrintList(SortedType& list) {
     if (list.isEmpty()) {
         cout << "[ EMPTY LIST ]" << endl;
@@ -27,100 +25,117 @@ int main() {
 
     SortedType sList;
 
-    // --------------------------------------------------
-    // Case 1: 빈 리스트에 첫 번째 원소 삽입
-    // --------------------------------------------------
-    cout << "=== Case 1: Insert into empty list ===" << endl;
+    /*
+    // ================================================
+    // insertItem 테스트
+    // ================================================
+
+    cout << "=== insertItem Case 1: 빈 리스트에 삽입 ===" << endl;
     sList.insertItem(10);
     PrintList(sList);
     // Expected: [ 10 ]
 
-    // --------------------------------------------------
-    // Case 2: 현재 최솟값보다 작은 값 삽입 (맨 앞에 들어가야 함)
-    // --------------------------------------------------
-    cout << "=== Case 2: Insert smaller value (goes to front) ===" << endl;
-    sList.insertItem(5);
-    PrintList(sList);
-    // Expected: [ 5 10 ]
-
-    // --------------------------------------------------
-    // Case 3: 현재 최댓값보다 큰 값 삽입 (맨 뒤에 들어가야 함)
-    // --------------------------------------------------
-    cout << "=== Case 3: Insert larger value (goes to back) ===" << endl;
-    sList.insertItem(20);
-    PrintList(sList);
-    // Expected: [ 5 10 20 ]
-
-    // --------------------------------------------------
-    // Case 4: 중간 위치에 삽입
-    // --------------------------------------------------
-    cout << "=== Case 4: Insert in the middle ===" << endl;
-    sList.insertItem(15);
-    PrintList(sList);
-    // Expected: [ 5 10 15 20 ]
-
-    sList.insertItem(7);
-    PrintList(sList);
-    // Expected: [ 5 7 10 15 20 ]
-
-/*
-    // --------------------------------------------------
-    // Case 5: 중복 값 삽입 (동일한 값이 이미 있을 때)
-    // --------------------------------------------------
-    cout << "=== Case 5: Insert duplicate value ===" << endl;
-    sList.insertItem(10);
-    PrintList(sList);
-    // Expected: [ 5 7 10 10 15 20 ]  (중복 허용 시)
-    //        OR [ 5 7 10 15 20 ]     (중복 불허 시)
-*/
-    // --------------------------------------------------
-    // Case 6: 여러 값을 순서 없이 삽입해도 항상 정렬 유지되는지
-    // --------------------------------------------------
-    cout << "=== Case 6: Insert multiple values out of order ===" << endl;
-    sList.clear();
-    PrintList(sList);
-    // Expected: [ EMPTY LIST ]
-
-    sList.insertItem(30);
-    sList.insertItem(1);
-    sList.insertItem(50);
-    sList.insertItem(25);
+    cout << "=== insertItem Case 2: 가장 작은 값 삽입 (맨 앞) ===" << endl;
     sList.insertItem(3);
     PrintList(sList);
-    // Expected: [ 1 3 25 30 50 ]
+    // Expected: [ 3 10 ]
 
+    cout << "=== insertItem Case 3: 가장 큰 값 삽입 (맨 뒤) ===" << endl;
+    sList.insertItem(20);
+    PrintList(sList);
+    // Expected: [ 3 10 20 ]
 
-/*
-    // --------------------------------------------------
-    // Case 7: 음수 값 삽입
-    // --------------------------------------------------
-    cout << "=== Case 7: Insert negative values ===" << endl;
-    sList.clear();
-    sList.insertItem(-5);
+    cout << "=== insertItem Case 4: 중간 값 삽입 ===" << endl;
+    sList.insertItem(7);
+    sList.insertItem(15);
+    PrintList(sList);
+    // Expected: [ 3 7 10 15 20 ]
+
+    cout << "=== insertItem Case 5: 중복 값 삽입 ===" << endl;
     sList.insertItem(10);
-    sList.insertItem(-20);
-    sList.insertItem(0);
     PrintList(sList);
-    // Expected: [ -20 -5 0 10 ]
-*/
+    // Expected: [ 3 7 10 10 15 20 ] (중복 허용 시)
+    //        OR [ 3 7 10 15 20 ]    (중복 불허 시)
 
+    */
 
-    // --------------------------------------------------
-    // Case 8: MAX_SIZE(30)까지 채운 뒤 추가 삽입 시도 (isFull 처리 확인)
-    // --------------------------------------------------
-    cout << "=== Case 8: Insert until full ===" << endl;
+    // ================================================
+    // removeItem 테스트
+    // ================================================
+
+    cout << "\n=== removeItem Case 1: 중간 값 제거 ===" << endl;
     sList.clear();
-    for (int i = 1; i <= 30; i++) {
-        sList.insertItem(i);
-    }
-    cout << "size: " << sList.size() << endl;
-    // Expected: size: 30
+    sList.insertItem(3);
+    sList.insertItem(7);
+    sList.insertItem(10);
+    sList.insertItem(15);
+    sList.insertItem(20);
     PrintList(sList);
-    // Expected: [ 1 2 3 ... 30 ]
+    // Expected: [ 3 7 10 15 20 ]
+    sList.removeItem(10);
+    PrintList(sList);
+    // Expected: [ 3 7 15 20 ]
 
-    cout << "Inserting into full list:" << endl;
-    sList.insertItem(99);   // 꽉 찼을 때 에러 처리 확인
-    // Expected: [ERROR] or similar message, list unchanged
+    cout << "=== removeItem Case 2: 맨 앞 값 제거 ===" << endl;
+    sList.removeItem(3);
+    PrintList(sList);
+    // Expected: [ 7 15 20 ]
 
+    cout << "=== removeItem Case 3: 맨 뒤 값 제거 ===" << endl;
+    sList.removeItem(20);
+    PrintList(sList);
+    // Expected: [ 7 15 ]
+
+    cout << "=== removeItem Case 4: 존재하지 않는 값 제거 ===" << endl;
+    sList.removeItem(99);
+    PrintList(sList);
+    // Expected: [ 7 15 ] (변화 없음, 에러 메시지 출력 가능)
+
+    cout << "=== removeItem Case 5: 빈 리스트에서 제거 ===" << endl;
+    sList.clear();
+    sList.removeItem(5);
+    PrintList(sList);
+    // Expected: [ EMPTY LIST ] (에러 메시지 출력 가능)
+
+    // ================================================
+    // updateItem 테스트
+    // ================================================
+
+    /*
+    cout << "\n=== updateItem Case 1: 중간 값 변경 (정렬 유지 확인) ===" << endl;
+    sList.clear();
+    sList.insertItem(3);
+    sList.insertItem(7);
+    sList.insertItem(10);
+    sList.insertItem(15);
+    sList.insertItem(20);
+    PrintList(sList);
+    // Expected: [ 3 7 10 15 20 ]
+    sList.updateItem(7, 12);
+    PrintList(sList);
+    // Expected: [ 3 10 12 15 20 ]
+
+    cout << "=== updateItem Case 2: 맨 앞 값 변경 ===" << endl;
+    sList.updateItem(3, 1);
+    PrintList(sList);
+    // Expected: [ 1 10 12 15 20 ]
+
+    cout << "=== updateItem Case 3: 맨 뒤 값 변경 ===" << endl;
+    sList.updateItem(20, 25);
+    PrintList(sList);
+    // Expected: [ 1 10 12 15 25 ]
+
+    cout << "=== updateItem Case 4: 존재하지 않는 값 변경 ===" << endl;
+    sList.updateItem(99, 50);
+    PrintList(sList);
+    // Expected: 변화 없음 (에러 메시지 출력 가능)
+
+    cout << "=== updateItem Case 5: 정렬 순서가 깨지는 값으로 변경 ===" << endl;
+    sList.updateItem(10, 30);
+    PrintList(sList);
+    // Expected: [ 1 12 15 25 30 ] (정렬 유지 시)
+    //        OR [ 1 30 12 15 25 ] (정렬 미유지 시 — 구현 오류 케이스)
+
+    */
     return 0;
 }
