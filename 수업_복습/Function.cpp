@@ -64,7 +64,9 @@ void SortedType::removeItem(ItemType value) {
 }
 
 // updateItem 연습
-//  void updateItem(ItemType old_value, ItemType new_value);
+void updateItem(ItemType old_value, ItemType new_value) {
+
+}
 
 void SortedType::clear() { length = 0; }
 
