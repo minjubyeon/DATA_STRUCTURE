@@ -58,8 +58,6 @@ int main() {
     cout << "[SIZE]: " << tempQue.size() << endl;
     // [SIZE]: 0
     
-    
-    
     tempQue.enqueue(1);
     tempQue.enqueue(15);
     tempQue.enqueue(23);

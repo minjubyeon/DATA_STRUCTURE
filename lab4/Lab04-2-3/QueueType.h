@@ -54,7 +54,7 @@ QueueType<ItemType>::~QueueType() {
   // It returns nothing
 
   while (!isEmpty()) {
-    NodeType* tempPtr = pFront;
+    NodeType<ItemType>* tempPtr = pFront;
     pFront = pFront->next;
     delete tempPtr;
   }
@@ -104,24 +104,22 @@ void QueueType<ItemType>::enqueue(ItemType newItem) {
   // This function enqueues "newItem" into the queue, and returns NOTHING.
   // If the queue is already full, do nothing.
 
-     if(isFull()){
-        return;
-    }
+  if (isFull()) {
+    return;
+  }
 
-    NodeType<ItemType> * newNode;
-    newNode = new NodeType<ItemType>;
+  NodeType<ItemType>* newNode;
+  newNode = new NodeType<ItemType>;
 
-    newNode -> value = newItem;
-    newNode -> next = nullptr;
+  newNode->value = newItem;
+  newNode->next = nullptr;
 
-    if(!isEmpty()){
-        pRear ->next = newNode;
-    }
-    else{
-        pFront = newNode;
-    }
-    pRear = newNode;
-
+  if (!isEmpty()) {
+    pRear->next = newNode;
+  } else {
+    pFront = newNode;
+  }
+  pRear = newNode;
 }
 
 template <class ItemType>
@@ -132,19 +130,19 @@ void QueueType<ItemType>::dequeue(ItemType& ret_value) {
   // the dequeue item's value to return. If the queue is empty, set "ret_value"
   // as -1
 
-  if (isEmpty()){ ret_value = -1;}
-
-  NodeType<ItemType>* tempPtr = pFront;
-  pFront = pFront -> next;
-  ret_value = tempPtr -> value;
-
-  delete tempPtr;
-
-  if(isEmpty()){
-    pRear = nullptr;
+  if (isEmpty()) {
+    ret_value = -1;
+    return;
   }
 
+  NodeType<ItemType>* tempPtr = pFront;
+  ret_value = tempPtr->value;
+  pFront = pFront->next;
+  delete tempPtr;
 
+  if (isEmpty()) {
+    pRear = nullptr;
+  }
 }
 
 template <class ItemType>
@@ -152,6 +150,42 @@ ItemType QueueType<ItemType>::maxDequeue() {
   /* Implement the function here (Lab 04-3)*/
   // This function removes and returns "the max value" in the queue
   // If the queue is empty, it returns -1 and does nothing
+
+  if (isEmpty()) return -1;
+
+ if (isEmpty()){
+        return -1;
+    }
+
+    NodeType<ItemType>* maxPrev = nullptr;
+    NodeType<ItemType>* maxNode = pFront;
+    NodeType<ItemType>* prev = nullptr;
+    NodeType<ItemType>* curr = pFront;
+
+    while (curr != nullptr)
+    {
+        if (curr->value > maxNode->value)
+        {
+            maxPrev = prev;
+            maxNode = curr;
+        }
+        prev = curr;
+        curr = curr->next;
+    }
+
+    ItemType maxVal = maxNode->value;
+
+    if (maxNode == pFront)
+        pFront = maxNode->next;
+    else
+        maxPrev->next = maxNode->next;
+
+    if (maxNode == pRear)
+        pRear = maxPrev;
+
+    delete maxNode;
+
+    return maxVal;
 }
 
 template <class ItemType>
